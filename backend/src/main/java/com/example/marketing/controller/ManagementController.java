@@ -8,14 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.example.marketing.entity.ActivityConfig;
 import com.example.marketing.repository.ActivityConfigRepository;
 import com.example.marketing.entity.WheelPrize;
 import com.example.marketing.service.LotteryWheelService;
 import com.example.marketing.entity.RewardConfig;
 import com.example.marketing.service.RewardService;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -45,7 +43,6 @@ public class ManagementController {
     public Map<String, Object> startActivity(@RequestParam String activityType) {
         Map<String, Object> vars = new HashMap<>();
         vars.put("activityType", activityType);
-
         String key = processConfigService.getProcessKey(activityType);
         if (key == null) {
             throw new IllegalArgumentException("Process not configured for type: " + activityType);

@@ -44,6 +44,7 @@ public class ClientController {
     @Autowired
     private RewardService rewardService;
 
+
     @GetMapping("/tasks")
     public List<Task> getTasks(@RequestParam String processId) {
         return taskService.createTaskQuery().processInstanceId(processId).list();
@@ -104,4 +105,3 @@ public class ClientController {
         return rewardService.listIssued(userId);
     }
 }
-

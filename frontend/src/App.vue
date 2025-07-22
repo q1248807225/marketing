@@ -6,6 +6,7 @@
       <router-link to="/client">Client</router-link>
     </nav>
     <router-view />
+
   </div>
 </template>
 

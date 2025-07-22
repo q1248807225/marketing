@@ -4,7 +4,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CouponService {
-    private final java.util.List<String> issued = new java.util.ArrayList<>();
+
+  private final java.util.List<String> issued = new java.util.ArrayList<>();
 
     public void issueCoupon(String activityType) {
         issued.add(activityType);
