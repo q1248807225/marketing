@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:flowable="http://flowable.org/bpmn"
+             targetNamespace="LotteryProcess">
+
+    <process id="lotteryProcess" name="Lottery Process" isExecutable="true">
+        <startEvent id="startEvent" name="Start"/>
+        <sequenceFlow id="flow1" sourceRef="startEvent" targetRef="joinTask"/>
+        <userTask id="joinTask" name="Join Lottery"/>
+        <sequenceFlow id="flow2" sourceRef="joinTask" targetRef="drawTask"/>
+        <serviceTask id="drawTask" name="Draw" flowable:delegateExpression="${lotteryService}"/>
+        <sequenceFlow id="flow3" sourceRef="drawTask" targetRef="gateway"/>
+        <exclusiveGateway id="gateway" name="Won?"/>
+        <sequenceFlow id="flowWin" sourceRef="gateway" targetRef="couponTask">
+            <conditionExpression xsi:type="tFormalExpression"><![CDATA[${won}]]></conditionExpression>
+        </sequenceFlow>
+        <sequenceFlow id="flowLose" sourceRef="gateway" targetRef="endEvent"/>
+        <serviceTask id="couponTask" name="Issue Coupon" flowable:expression="${couponService.issueCoupon('lottery')}"/>
+        <sequenceFlow id="flow4" sourceRef="couponTask" targetRef="endEvent"/>
+        <endEvent id="endEvent" name="End"/>
+    </process>
+</definitions>

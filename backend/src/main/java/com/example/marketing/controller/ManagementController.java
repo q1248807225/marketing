@@ -21,7 +21,13 @@ public class ManagementController {
     public Map<String, Object> startActivity(@RequestParam String activityType) {
         Map<String, Object> vars = new HashMap<>();
         vars.put("activityType", activityType);
-        String processId = runtimeService.startProcessInstanceByKey("marketingProcess", vars).getId();
+
+        String key = "marketingProcess";
+        if ("lottery".equalsIgnoreCase(activityType)) {
+            key = "lotteryProcess";
+        }
+
+        String processId = runtimeService.startProcessInstanceByKey(key, vars).getId();
         Map<String, Object> result = new HashMap<>();
         result.put("processId", processId);
         return result;

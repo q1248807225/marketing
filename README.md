@@ -9,7 +9,10 @@ This repository contains a simplified example of a marketing activities platform
 
 ## Backend
 
-The backend exposes REST endpoints to start activities and handle user tasks. A simple BPMN process (`marketing.bpmn20.xml`) issues a coupon after a user interaction.
+The backend exposes REST endpoints to start activities and handle user tasks. It provides two example BPMN processes:
+
+- `marketing.bpmn20.xml` – a minimal flow issuing a coupon after user interaction.
+- `lottery.bpmn20.xml` – a lottery flow where a participant may win a coupon.
 
 To build the backend:
 
